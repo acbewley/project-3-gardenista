@@ -1,0 +1,19 @@
+import React from "react";
+
+export function plantCard({
+    name,
+    scientific_name,
+    image,
+    description
+}) {
+    return (
+        <div class="card">
+            <img class="card-img-top" src={image} alt="Card image cap"></img>
+            <div class="card-body">
+                <h5 class="card-title">{name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{scientific_name}</h6>
+                <p class="card-text">{description}</p>
+            </div>
+        </div>
+    )
+}
