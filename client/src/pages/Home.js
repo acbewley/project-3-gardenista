@@ -4,10 +4,7 @@ import Header from '../components/header/index';
 
 function Home() {
   return (
-    <div>
-      <Header />
-      <Footer />
-    </div>
+    <h1>test</h1>
   )
 }
 
