@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 
 function Landing() {
+  const userRef = useRef();
+  const passRef = useRef();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("Login");
+    console.log("User: " + userRef.current.value);
+    console.log("Pass: " + passRef.current.value);
+  };
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log("Singup");
+    console.log("User: " + userRef.current.value);
+    console.log("Pass: " + passRef.current.value);
+  };
   return (
     <div className="container mt-5 mb-5">
       <h1 className="mt-2">Welcome!</h1>
@@ -43,6 +57,7 @@ function Landing() {
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               placeholder="Username"
+              ref={userRef}
             />
           </div>
           <div class="input-group input-group-sm">
@@ -52,10 +67,11 @@ function Landing() {
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               placeholder="Password"
+              ref={passRef}
             />
           </div>
           <div className="text-right mt-3 mb-5">
-            <Button variant="mr-2">
+            <Button variant="mr-2" onClick={handleSignup}>
               <u>Sign Up</u>
             </Button>
             <Button
@@ -65,6 +81,7 @@ function Landing() {
                 border: "none",
                 borderRadius: 0,
               }}
+              onClick={handleLogin}
             >
               Log In
             </Button>
