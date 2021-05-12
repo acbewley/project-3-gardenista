@@ -16,5 +16,8 @@ export default {
   // Saves a plant to the database
   savePlant: function(plantData) {
     return axios.post("/api/plants", plantData);
+  },
+  getWeather: function(lat, long) {
+    return axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=c1ba9a1d8d332b1ef324e57e7f47dbdf`)
   }
 };

@@ -1,4 +1,5 @@
 import React from "react"
+// import Button from "react-bootstrap/Button";
 
 function Journal () {
     return (
@@ -22,6 +23,5 @@ function Journal () {
         </div>
       </div>
     );
-}
 
 export default Journal;
