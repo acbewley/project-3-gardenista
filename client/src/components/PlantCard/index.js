@@ -1,6 +1,6 @@
 import React from "react";
 
-export function plantCard({
+export function PlantCard({
     name,
     scientific_name,
     image,
@@ -8,7 +8,7 @@ export function plantCard({
 }) {
     return (
         <div class="card">
-            <img class="card-img-top" src={image} alt="Card image cap"></img>
+            <img class="card-img-top" src={image} alt="Card cap"></img>
             <div class="card-body">
                 <h5 class="card-title">{name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{scientific_name}</h6>
