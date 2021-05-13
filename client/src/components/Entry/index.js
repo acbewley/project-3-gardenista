@@ -12,7 +12,6 @@ function Entry() {
             <textarea className="note-textarea" placeholder="Type here...">
             </textarea>
             </div>
-
         </div>
     )
 }
