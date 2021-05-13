@@ -1,26 +1,19 @@
 import React from "react"
-// import Button from "react-bootstrap/Button";
+import { Container, Row, Col } from "../components/Grid/index";
+import Entry from "../components/Entry"
 
 function Journal () {
     return (
-        <div className="container-fluid">
-        <div className="row">
-          <div className="col-4 list-container">
-            <div className="card">
-              <h2 style="color: #fff; align: center;">Journal Entries</h2>
-              <ul className="list-group">
-              </ul>
-            </div>
-          </div>
-          <div className="col-8">
-            <input className="note-title" placeholder="Note Title" maxlength="28" type="text"/>
-            <textarea 
-            className="note-textarea" placeholder="Type here..." style="background-color: #a2c789"
-            >
-            </textarea>
-          </div>
-        </div>
-      </div>
+        <Container>
+          <Row>
+            <Col size="md-3">
+            Journal Entry List Will Go Here
+            </Col>
+            <Col size="md-9">
+            <Entry></Entry>
+            </Col>
+          </Row>
+        </Container>
     )
 }
 
