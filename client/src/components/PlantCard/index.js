@@ -1,4 +1,5 @@
 import React from "react";
+import "../PlantCard/style.css"
 
 export function PlantCard({
     name,
