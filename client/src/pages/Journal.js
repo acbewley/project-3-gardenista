@@ -15,13 +15,13 @@ function Journal () {
           <div className="col-8">
             <input className="note-title" placeholder="Note Title" maxlength="28" type="text"/>
             <textarea 
-            className="note-textarea" placeholder="Type here..."
-            style={{ background: rgba(163, 197, 134, .16)}}
+            className="note-textarea" placeholder="Type here..." style="background-color: #a2c789"
             >
             </textarea>
           </div>
         </div>
       </div>
-    );
+    )
+}
 
 export default Journal;
