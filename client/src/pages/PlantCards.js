@@ -1,21 +1,22 @@
 import React from "react";
-import plantCard from "../components/PlantCard/index"
+import PlantCard from "../components/PlantCard"
 import { Container, Row, Col } from "../components/Grid/index";
 
 
 
 function PlantCards() {
+
+
   return <Container>
     <Row>
       <Col size="md-6">
-        <plantCard>
-          Test
-        </plantCard>
+        <PlantCard name="test" scientific_name="testing" image="https://www.calloways.com/wp-content/uploads/sarah-bernhardt-peony-0773401189-01.jpg" description="put description here" />
+          
       </Col>
       <Col size="md-6">
-        <plantCard>
+        <PlantCard>
           Test
-        </plantCard>
+        </PlantCard>
       </Col>
     </Row>
   </Container>

@@ -17,3 +17,5 @@ export function PlantCard({
         </div>
     )
 }
+
+export default PlantCard;
