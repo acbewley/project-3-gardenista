@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import API from "../utils/API";
 
 function Landing() {
   const userRef = useRef();
   const passRef = useRef();
+  // const [allUser, setAllUser] = useState([]);
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Login");
@@ -16,6 +18,17 @@ function Landing() {
     console.log("User: " + userRef.current.value);
     console.log("Pass: " + passRef.current.value);
   };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  function loadUser() {
+    API.getUsers()
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="container mt-5 mb-5">
       <h1 className="mt-2">Welcome!</h1>
