@@ -3,14 +3,14 @@ import "../Entry/style.css"
 
 function Entry() {
     return (
-        <div>
+        <div className="list-container">
             <div>
                 <h2>Journal Entries</h2>
             </div>
             <div>
-            <input className="note-title" placeholder="Note Title" maxlength="28" type="text"/>
-            <textarea className="note-textarea" placeholder="Type here...">
-            </textarea>
+                <input className="note-title" placeholder="Note Title" maxLength="28" type="text" />
+                <textarea className="note-textarea" placeholder="Type here...">
+                </textarea>
             </div>
         </div>
     )
