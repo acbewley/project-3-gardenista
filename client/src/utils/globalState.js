@@ -14,8 +14,8 @@ function reducer(state, action) {
         ...state,
         {
           isLoggin: true,
-          userId: state.userId,
-          username: state.username,
+          userId: action.userId,
+          username: action.username,
         },
       ];
 
@@ -33,5 +33,4 @@ function UserProvider({ value = [], ...props }) {
 function useUserContext() {
   return useContext(UserContext);
 }
-
 export { UserProvider, useUserContext };

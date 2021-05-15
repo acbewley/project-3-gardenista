@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import { useUserContext } from "../utils/globalState";
 
 function Landing() {
   const history = useHistory();
@@ -10,6 +11,8 @@ function Landing() {
   const [allUser, setAllUser] = useState([]);
   const [isLoggedin, setIsLoggedIn] = useState();
   const [error, setError] = useState("");
+
+  const [_, dispatch] = useUserContext();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -26,8 +29,13 @@ function Landing() {
         e.username === userRef.current.value &&
         e.password === passRef.current.value
     );
-    console.log(u);
+    console.log(u._id);
     if (isLoggedin) {
+      dispatch({
+        type: "loggin",
+        userId: u._id,
+        username: u.username,
+      });
       history.push("/home");
       setError("");
     } else {
