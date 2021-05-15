@@ -1,17 +1,34 @@
 import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
+import { useHistory } from "react-router-dom";
 
 function Landing() {
+  const history = useHistory();
   const userRef = useRef();
   const passRef = useRef();
-  // const [allUser, setAllUser] = useState([]);
+  const [allUser, setAllUser] = useState([]);
+  const [isLoggedin, setIsLoggedIn] = useState();
+  const [userId, setUserId] = useState();
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login");
-    console.log("User: " + userRef.current.value);
-    console.log("Pass: " + passRef.current.value);
+    setIsLoggedIn(
+      allUser.some(
+        (e) =>
+          e.username === userRef.current.value &&
+          e.password === passRef.current.value
+      )
+    );
+
+    const u = allUser.find(
+      (e) =>
+        e.username === userRef.current.value &&
+        e.password === passRef.current.value
+    );
+    console.log(u);
+    history.push("/home");
   };
+
   const handleSignup = (e) => {
     e.preventDefault();
     console.log("Singup");
@@ -25,7 +42,7 @@ function Landing() {
 
   function loadUser() {
     API.getUsers()
-      .then((res) => console.log(res.data))
+      .then((res) => setAllUser(res.data))
       .catch((err) => console.log(err));
   }
 
@@ -83,6 +100,7 @@ function Landing() {
               ref={passRef}
             />
           </div>
+          {isLoggedin ? <div>Logged in</div> : <div>Not Logged in</div>}
           <div className="text-right mt-3 mb-5">
             <Button variant="mr-2" onClick={handleSignup}>
               <u>Sign Up</u>

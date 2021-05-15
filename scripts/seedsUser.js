@@ -7,10 +7,26 @@ const userSeed = [
   {
     username: "test",
     password: "test123",
+    plants: [
+      {
+        name: "Plant1",
+        scientific_name: "Plant1ScientificName",
+        image: "URLHERE_plant1",
+        description: "put some dscription here for plant 1",
+      },
+    ],
   },
   {
     username: "test2",
     password: "test123",
+    plants: [
+      {
+        name: "Plant2",
+        scientific_name: "Plant2ScientificName",
+        image: "URLHERE_plant2",
+        description: "put some dscription here for plant 2",
+      },
+    ],
   },
 ];
 
