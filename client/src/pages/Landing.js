@@ -29,19 +29,23 @@ function Landing() {
         e.username === userRef.current.value &&
         e.password === passRef.current.value
     );
-    console.log(u._id);
+    console.log(isLoggedin);
+    handleHomePage(u);
+  };
+
+  function handleHomePage(e) {
     if (isLoggedin) {
       dispatch({
         type: "loggin",
-        userId: u._id,
-        username: u.username,
+        userId: e._id,
+        username: e.username,
       });
       history.push("/home");
       setError("");
     } else {
       setError("Incorrect Username or Password");
     }
-  };
+  }
 
   const handleSignup = (e) => {
     e.preventDefault();
