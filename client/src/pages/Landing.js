@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import { useUserContext } from "../utils/globalState";
 
 function Landing() {
   const history = useHistory();
@@ -9,7 +10,10 @@ function Landing() {
   const passRef = useRef();
   const [allUser, setAllUser] = useState([]);
   const [isLoggedin, setIsLoggedIn] = useState();
-  const [userId, setUserId] = useState();
+  const [error, setError] = useState("");
+
+  const [_, dispatch] = useUserContext();
+
   const handleLogin = (e) => {
     e.preventDefault();
     setIsLoggedIn(
@@ -25,8 +29,18 @@ function Landing() {
         e.username === userRef.current.value &&
         e.password === passRef.current.value
     );
-    console.log(u);
-    history.push("/home");
+    console.log(u._id);
+    if (isLoggedin) {
+      dispatch({
+        type: "loggin",
+        userId: u._id,
+        username: u.username,
+      });
+      history.push("/home");
+      setError("");
+    } else {
+      setError("Incorrect Username or Password");
+    }
   };
 
   const handleSignup = (e) => {
@@ -100,7 +114,7 @@ function Landing() {
               ref={passRef}
             />
           </div>
-          {isLoggedin ? <div>Logged in</div> : <div>Not Logged in</div>}
+          <div>{error}</div>
           <div className="text-right mt-3 mb-5">
             <Button variant="mr-2" onClick={handleSignup}>
               <u>Sign Up</u>
