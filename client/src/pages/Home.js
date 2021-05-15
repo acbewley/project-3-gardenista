@@ -3,7 +3,6 @@ import { WeatherDiv, WeatherCard } from '../components/Weather';
 import API from '../utils/API';
 import { Container, Row, Col } from '../components/Grid';
 import NeedWater from '../components/NeedWater';
-import Divider from '../components/Divider';
 
 function Home() {
   const [weather, setWeather] = useState([])
@@ -29,16 +28,13 @@ function Home() {
   return (
     <Container>
       <Row>
-        <Col size="3">
+        <Col size="md-4">
           <p style={{ textAlign: "center", marginTop: "50px" }}>Welcome, (Username)!</p>
           <NeedWater>
             <div style={{ textAlign: "center" }}>(insert cards here)</div>
           </NeedWater>
         </Col>
-        <Col size="1">
-          <Divider />
-        </Col>
-        <Col size="8">
+        <Col size="md-8">
           <Row>
             <WeatherDiv>
               <WeatherCard
