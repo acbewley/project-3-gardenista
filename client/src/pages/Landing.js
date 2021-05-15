@@ -9,7 +9,8 @@ function Landing() {
   const passRef = useRef();
   const [allUser, setAllUser] = useState([]);
   const [isLoggedin, setIsLoggedIn] = useState();
-  const [userId, setUserId] = useState();
+  const [error, setError] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault();
     setIsLoggedIn(
@@ -26,7 +27,12 @@ function Landing() {
         e.password === passRef.current.value
     );
     console.log(u);
-    history.push("/home");
+    if (isLoggedin) {
+      history.push("/home");
+      setError("");
+    } else {
+      setError("Incorrect Username or Password");
+    }
   };
 
   const handleSignup = (e) => {
@@ -100,7 +106,7 @@ function Landing() {
               ref={passRef}
             />
           </div>
-          {isLoggedin ? <div>Logged in</div> : <div>Not Logged in</div>}
+          <div>{error}</div>
           <div className="text-right mt-3 mb-5">
             <Button variant="mr-2" onClick={handleSignup}>
               <u>Sign Up</u>
