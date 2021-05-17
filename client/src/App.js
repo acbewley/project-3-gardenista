@@ -1,26 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Footer from "./components/Footer/index";
-import Header from "./components/Header/index";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Journal from "./pages/Journal";
 import PlantCards from "./pages/PlantCards";
+import { UserProvider } from "./utils/globalState";
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/journal" component={Journal} />
-          <Route exact path="/cards" component={PlantCards} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+    <UserProvider>
+      <Router>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/journal" component={Journal} />
+            <Route exact path="/cards" component={PlantCards} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 

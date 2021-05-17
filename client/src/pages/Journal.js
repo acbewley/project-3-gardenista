@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Container, Row, Col } from "../components/Grid/index";
 import Entry from "../components/Entry"
 import Button from "react-bootstrap/Button";
@@ -34,6 +34,7 @@ function Journal() {
             </Row>
         </Container>
     )
+
 }
 
 export default Journal;

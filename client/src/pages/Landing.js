@@ -1,21 +1,69 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import API from "../utils/API";
+import { useHistory } from "react-router-dom";
+import { useUserContext } from "../utils/globalState";
 
 function Landing() {
+  const history = useHistory();
   const userRef = useRef();
   const passRef = useRef();
+  const [allUser, setAllUser] = useState([]);
+  const [isLoggedin, setIsLoggedIn] = useState();
+  const [error, setError] = useState("");
+
+  const [_, dispatch] = useUserContext();
+
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login");
-    console.log("User: " + userRef.current.value);
-    console.log("Pass: " + passRef.current.value);
+    setIsLoggedIn(
+      allUser.some(
+        (e) =>
+          e.username === userRef.current.value &&
+          e.password === passRef.current.value
+      )
+    );
+
+    const u = allUser.find(
+      (e) =>
+        e.username === userRef.current.value &&
+        e.password === passRef.current.value
+    );
+    console.log(isLoggedin);
+    handleHomePage(u);
   };
+
+  function handleHomePage(e) {
+    if (isLoggedin) {
+      dispatch({
+        type: "loggin",
+        userId: e._id,
+        username: e.username,
+      });
+      history.push("/home");
+      setError("");
+    } else {
+      setError("Incorrect Username or Password");
+    }
+  }
+
   const handleSignup = (e) => {
     e.preventDefault();
     console.log("Singup");
     console.log("User: " + userRef.current.value);
     console.log("Pass: " + passRef.current.value);
   };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  function loadUser() {
+    API.getUsers()
+      .then((res) => setAllUser(res.data))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="container mt-5 mb-5">
       <h1 className="mt-2">Welcome!</h1>
@@ -70,6 +118,7 @@ function Landing() {
               ref={passRef}
             />
           </div>
+          <div>{error}</div>
           <div className="text-right mt-3 mb-5">
             <Button variant="mr-2" onClick={handleSignup}>
               <u>Sign Up</u>
