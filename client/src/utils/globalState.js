@@ -10,14 +10,11 @@ const { Provider } = UserContext;
 function reducer(state, action) {
   switch (action.type) {
     case "loggin":
-      return [
-        ...state,
-        {
-          isLoggin: true,
-          userId: action.userId,
-          username: action.username,
-        },
-      ];
+      return (
+        (state.isLoggin = true),
+        (state.userId = action.userId),
+        (state.username = action.username)
+      );
 
     default:
       return state;
@@ -25,7 +22,7 @@ function reducer(state, action) {
 }
 
 function UserProvider({ value = [], ...props }) {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, {});
 
   return <Provider value={[state, dispatch]} {...props} />;
 }
