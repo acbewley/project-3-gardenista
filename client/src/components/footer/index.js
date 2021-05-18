@@ -10,9 +10,9 @@ const style = {
 
 const Footer = () => {
   return (
-    <footer class="footer mt-auto py-3" style={style}>
-      <div class="container">
-        <span class="text-muted">Copyrite Us 2021</span>
+    <footer className="footer mt-auto py-3" style={style}>
+      <div className="container">
+        <span className="text-muted">Copyrite Us 2021</span>
       </div>
     </footer>
   )

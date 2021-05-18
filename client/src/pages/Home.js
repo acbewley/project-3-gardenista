@@ -3,14 +3,15 @@ import { WeatherDiv, WeatherCard } from '../components/Weather';
 import API from '../utils/API';
 import { Container, Row, Col } from '../components/Grid';
 import NeedWater from '../components/NeedWater';
+import { useUserContext } from '../utils/globalState';
 
 function Home() {
   const [weather, setWeather] = useState([])
-  const [timezoneOffset, setOffset] = useState(0)
+  const [state, dispatch]= useUserContext();
 
   useEffect(() => {
     loadWeather()
-  }, [])
+  }, [state])
 
   function loadWeather() {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -19,17 +20,15 @@ function Home() {
       API.getWeather(lat, long)
         .then(res => {
           setWeather(res.data.daily)
-          setOffset(res.data.timezone_offset)
-          console.log(res)
         })
-    })
+    }) 
   }
 
   return (
     <Container>
       <Row>
         <Col size="md-4">
-          <p style={{ textAlign: "center", marginTop: "50px" }}>Welcome, (Username)!</p>
+          <p style={{ textAlign: "center", marginTop: "50px" }}>Welcome, {state[0].username}!</p>
           <NeedWater>
             <div style={{ textAlign: "center" }}>(insert cards here)</div>
           </NeedWater>
@@ -38,8 +37,7 @@ function Home() {
           <Row>
             <WeatherDiv>
               <WeatherCard
-              data={weather}
-              offset={timezoneOffset}
+                data={weather}
               />
             </WeatherDiv>
           </Row>

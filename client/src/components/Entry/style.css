@@ -17,9 +17,15 @@ h2 {
 }
 
 .note-textarea {
-    background-color: #a2c789;
-    height: calc( 80% - 35px);
+    resize: none;
+    height: 550px;
+    padding-top: 15px;
+    background: rgba(163, 197, 134);
 }
+
+.note-title:read-only, .note-textarea:read-only {
+    color: #757575;
+  }
 
 .col-md-3 {
     height: calc(80vh - 70px);
@@ -27,4 +33,10 @@ h2 {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-color: #fc3;
+}
+
+
+.col-md-3 h3 {
+    color: #fff;
+    text-align: center;
 }
