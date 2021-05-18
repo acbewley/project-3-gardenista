@@ -30,6 +30,7 @@ function Landing() {
         e.password === passRef.current.value
     );
     console.log(isLoggedin);
+    console.log(u)
     handleHomePage(u);
   };
 
