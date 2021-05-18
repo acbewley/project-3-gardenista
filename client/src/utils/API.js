@@ -31,4 +31,7 @@ export default {
   getUser: function (id) {
     return axios.get("/api/user/" + id);
   },
+  createUser: function (newUser) {
+    return axios.post("/api/user/", newUser);
+  },
 };
