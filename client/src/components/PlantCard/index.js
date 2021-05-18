@@ -8,7 +8,7 @@ export function PlantCard({
     description
 }) {
     return (
-    <div>
+    <div class="plant-card">
         <img class="card-img-top" src={image} alt="Card cap"></img>
         <div class="card-body">
             <h5 class="card-title">{name}</h5>
