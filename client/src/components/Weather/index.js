@@ -10,12 +10,11 @@ export function WeatherDiv({ children }) {
 }
 
 export function WeatherCard(props) {
-  console.log(props)
   if (props.data.length > 0) {
     return (
       <div className='row'>
         {props.data.slice(0, 5).map(day => (
-          <div className="card col-md " style={{ width: "90%", margin: "20px", backgroundColor: "#A3C586" }}>
+          <div key={day.dt} className="card col-md " style={{ width: "90%", margin: "20px", backgroundColor: "#A3C586" }}>
             <div className="card-body">
               <h5 className="card-title" style={{ fontSize: '10pt' }}>{new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' })}</h5>
               <p className="card-text" style={{ fontSize: '9pt' }}>Temperature: {day.temp.day}°</p>
