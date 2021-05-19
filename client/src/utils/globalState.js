@@ -11,9 +11,11 @@ function reducer(state, action) {
   switch (action.type) {
     case "loggin":
       return (
-        (state.isLoggin = true),
-        (state.userId = action.userId),
-        (state.username = action.username)
+        {
+          isLoggin: true,
+          userId: action.userId,
+          username: action.username
+        }
       );
 
     default:
