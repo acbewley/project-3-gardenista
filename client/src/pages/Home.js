@@ -28,7 +28,7 @@ function Home() {
     <Container>
       <Row>
         <Col size="md-4">
-          <p style={{ textAlign: "center", marginTop: "50px" }}>Welcome, {state[0].username}!</p>
+          <p style={{ textAlign: "center", marginTop: "50px" }}>Welcome, {state.username}!</p>
           <NeedWater>
             <div style={{ textAlign: "center" }}>(insert cards here)</div>
           </NeedWater>
