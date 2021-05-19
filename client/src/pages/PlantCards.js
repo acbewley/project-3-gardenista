@@ -45,6 +45,7 @@ class PlantCards extends Component {
       </div>
   )
   }
+
 }
 
 export default PlantCards;
