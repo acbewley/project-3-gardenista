@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Journal from "./pages/Journal";
 import PlantCards from "./pages/PlantCards";
+import PlantsAll from "./pages/PlantsAll"
 import { UserProvider } from "./utils/globalState";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/journal" component={Journal} />
             <Route exact path="/cards" component={PlantCards} />
+            <Route exact path="/plants" component={PlantsAll} />
           </Switch>
           <Footer />
         </div>

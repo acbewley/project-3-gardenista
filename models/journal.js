@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { default: Journal } = require("../client/src/pages/Journal");
+// const { default: Journal } = require("../client/src/pages/Journal");
 const Schema = mongoose.Schema;
 
 const journalSchema = new Schema ({

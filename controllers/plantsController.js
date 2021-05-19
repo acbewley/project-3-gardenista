@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the postsController
+// Defining methods for the plantsController
 module.exports = {
   findAll: function(req, res) {
     db.Plants.find(req.query)
