@@ -1,18 +1,30 @@
-import React, { useEffect } from "react";
-import PlantCard from "../components/PlantCard"
-import PlantHeader from "../components/PlantHeader"
-import AddButton from "../components/PlantAdd"
+import React, { useState, useEffect } from "react";
+// import PlantHeader from "../components/PlantHeader"
+// import AddButton from "../components/PlantAdd"
 import { Container, Row, Col } from "../components/Grid/index";
-import { useUserContext } from "../utils/globalState";
-
-
+import API from "../utils/API"
+import SaveList from "../components/SaveList"
+import { useUserContext } from "../utils/globalState"
 
 function PlantCards() {
-  const [state] = useUserContext();
+  const [state, dispatch] = useUserContext()
+
+  const [savedPlants, setSavedPlants] = useState([]);
+
+  const [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
-    authenticate()
-  })
+    getUser();
+    getPlants();
+    authenticate();
+  }, [state]);
+
+  function getUser() {
+    API.getUser(state.userId).then(res => {
+      console.log(res)
+      setCurrentUser([...currentUser, res.data.plants])
+    })
+  }
 
   function authenticate() {
     if (!state.isLoggin) {
@@ -20,32 +32,40 @@ function PlantCards() {
     }
   }
 
-  return <Container>
-    <Row>
-      <PlantHeader></PlantHeader>
-    </Row>
-    <Row>
-      <Col size='md-2'>
-        <AddButton></AddButton>
-      </Col>
-      <Col size="md-5">
-        <PlantCard name="test" scientific_name="testing" image="https://www.calloways.com/wp-content/uploads/sarah-bernhardt-peony-0773401189-01.jpg" description="put description here" />
-      </Col>
-      <Col size="md-5">
-        <PlantCard name="test" scientific_name="testing" image="https://www.calloways.com/wp-content/uploads/sarah-bernhardt-peony-0773401189-01.jpg" description="put description here" />
-      </Col>
-    </Row>
-    <Row>
-      <Col size='md-2'></Col>
-      <Col size="md-5">
-        <PlantCard name="test" scientific_name="testing" image="https://www.calloways.com/wp-content/uploads/sarah-bernhardt-peony-0773401189-01.jpg" description="put description here" />
-      </Col>
-      <Col size="md-5">
-        <PlantCard name="test" scientific_name="testing" image="https://www.calloways.com/wp-content/uploads/sarah-bernhardt-peony-0773401189-01.jpg" description="put description here" />
-      </Col>
-    </Row>
+  function getPlants() {
+    currentUser.plants.map(plant => (
+      API.getPlant(plant._id)
+        .then(res => {
+          setSavedPlants([
+            ...savedPlants,
+            res.data
+          ])
+          console.log("This is the res from getPlants", res);
+        })
+        .catch(err => {
+          console.log("This is the error", err);
+        })
+    ))
 
-  </Container>
+  }
+
+  console.log(currentUser)
+
+  return (
+    <div>
+      <Container fluid>
+        {savedPlants.length ? (
+          <SaveList
+            plantState={savedPlants}
+          >
+          </SaveList>
+        ) : (
+          <h5>No results to display</h5>
+        )}
+      </Container>
+    </div>
+  )
 }
+
 
 export default PlantCards;

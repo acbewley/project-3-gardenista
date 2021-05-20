@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the postsController
+// Defining methods for the plantsController
 module.exports = {
   findAll: function(req, res) {
     db.Plants.find(req.query)
@@ -13,11 +13,11 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-//   create: function(req, res) {
-//     db.Plants.create(req.body)
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   },
+  create: function(req, res) {
+    db.Plants.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   update: function(req, res) {
     db.Plants.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
