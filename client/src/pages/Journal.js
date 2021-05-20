@@ -55,4 +55,4 @@ function Journal() {
   );
 }
 
-// export default Journal;
+export default Journal;

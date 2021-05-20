@@ -41,7 +41,7 @@ function Landing() {
         userId: e._id,
         username: e.username,
       });
-      history.push("/cards");
+      history.push("/home");
       setError("");
     } else {
       setError("Incorrect Username or Password");
