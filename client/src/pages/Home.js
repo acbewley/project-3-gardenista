@@ -10,8 +10,15 @@ function Home() {
   const [state, dispatch]= useUserContext();
 
   useEffect(() => {
+    authenticate()
     loadWeather()
   }, [state])
+
+  function authenticate() {
+    if (!state.isLoggin) {
+      window.location.pathname = '/'
+    }
+  }
 
   function loadWeather() {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -23,7 +30,7 @@ function Home() {
         })
     }) 
   }
-
+  console.log(state)
   return (
     <Container>
       <Row>

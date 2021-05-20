@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PlantCard from "../components/PlantCard"
 import PlantHeader from "../components/PlantHeader"
 import AddButton from "../components/PlantAdd"
 import { Container, Row, Col } from "../components/Grid/index";
+import { useUserContext } from "../utils/globalState";
 
 
 
 function PlantCards() {
+  const [state] = useUserContext();
+
+  useEffect(() => {
+    authenticate()
+  })
+
+  function authenticate() {
+    if (!state.isLoggin) {
+      window.location.pathname = '/'
+    }
+  }
 
   return <Container>
     <Row>
