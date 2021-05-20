@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import AllCardsItem from "../AllCardsItem";
 
-class AllCards extends Component {
-    render() {
+function AllCards (props) {
+
         return (
-            this.props.plantState.map((plant) =>
+            props.plantState.map((plant) =>
             <AllCardsItem
             key={plant._id}
             id={plant._id}
@@ -14,10 +14,9 @@ class AllCards extends Component {
             usda_zones={plant.usda_zones}
             image={plant.image}
             description={plant.description}
-            savePlant={this.props.savePlant}
+            savePlant={props.savePlant}
             />
             )
         )
-    }
 }
 export default AllCards;

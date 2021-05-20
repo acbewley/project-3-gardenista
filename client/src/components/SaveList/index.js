@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PlantCard from "../PlantCard"
 
-class SaveList extends Component {
+function SaveList (props) {
 
-    render() {
-        console.log("Props", this.props.plantState);
+        console.log("Props", props);
         return (
-            this.props.plantState.map((plant) =>
+            props.plantState.map((plant) =>
             <PlantCard 
             key={plant._id}
             id={plant._id}
@@ -20,6 +19,5 @@ class SaveList extends Component {
             )
         )
     }
-}
 
 export default SaveList;
