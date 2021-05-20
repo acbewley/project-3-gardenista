@@ -7,7 +7,7 @@ import { useUserContext } from "../utils/globalState";
 
 function Home() {
   const [weather, setWeather] = useState([]);
-  const [state, dispatch] = useUserContext();
+  const [state] = useUserContext();
 
   useEffect(() => {
     authenticate()
