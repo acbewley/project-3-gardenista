@@ -12,31 +12,35 @@ function PlantsAll() {
 
     function loadPlant() {
         API.getPlants()
-          .then((res) => console.log(res.data))
+          .then((res) => setAllPlants(res.data))
+
           .catch((err) => console.log(err));
+
       }
 
-    // savePlant = currentPlant => {
-    //     console.log("This is the current plant", currentPlant);
-    //     API.savePlant({
-    //         id: currentPlant.id,
-    //         name: currentPlant.name,
-    //         botanical_name: currentPlant.botanical_name,
-    //         height: currentPlant.height,
-    //         usda_zones: currentPlant.usda_zones,
-    //         image: currentPlant.image,
-    //         description: currentPlant.description
-    //     })
-    //     .then(res => console.log("Successful POST to DB!", res))
-    //     .catch(err => console.log("this is the error", err));
-    // }
+    function savePlant(currentPlant) {
+        console.log("This is the current plant", currentPlant);
+        API.savePlant({
+            id: currentPlant.id,
+            name: currentPlant.name,
+            botanical_name: currentPlant.botanical_name,
+            height: currentPlant.height,
+            usda_zones: currentPlant.usda_zones,
+            image: currentPlant.image,
+            description: currentPlant.description
+        })
+        .then(res => console.log("Successful POST to DB!", res))
+        .catch(err => console.log("this is the error", err));
+    }
+
         return (
             <div>
-                {/* <Container>
-                {this.state.plants.length ? (
+                <Container>
+                {allPlants.length ? (
                     <AllCards 
-                    plantState={this.state.plants}
-                    savePlant={this.savePlant}>
+                    plantState={allPlants}
+                    savePlant={savePlant}
+                    >
                     </AllCards>
                 ) : (
                     <div>
@@ -44,7 +48,7 @@ function PlantsAll() {
                     <p style={{fontStyle: "italic"}}>No results to display</p>
                     </div>
                 )}
-                </Container> */}
+                </Container>
             </div>
         )
     }
