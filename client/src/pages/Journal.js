@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "../components/Grid";
 import Entry from "../components/Entry";
+import { useUserContext } from "../utils/globalState";
 import Button from "react-bootstrap/Button";
+
 function Journal() {
+  const [state] = useUserContext();
+
+  useEffect(() => {
+    authenticate();
+  }, [state])
+
+  function authenticate() {
+    if (!state.isLoggin) {
+      window.location.pathname = '/'
+    }
+  }
+  
   return (
     <div>
       <Container>
@@ -41,4 +55,4 @@ function Journal() {
   );
 }
 
-export default Journal;
+// export default Journal;

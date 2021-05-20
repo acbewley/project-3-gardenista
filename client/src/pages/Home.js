@@ -7,11 +7,18 @@ import { useUserContext } from "../utils/globalState";
 
 function Home() {
   const [weather, setWeather] = useState([]);
-  const [state, dispatch] = useUserContext();
+  const [state] = useUserContext();
 
   useEffect(() => {
-    loadWeather();
-  }, []);
+    authenticate()
+    loadWeather()
+  }, [state])
+
+  function authenticate() {
+    if (!state.isLoggin) {
+      window.location.pathname = '/'
+    }
+  }
 
   function loadWeather() {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -22,7 +29,7 @@ function Home() {
       });
     });
   }
-
+  console.log(state)
   return (
     <Container>
       <Row>

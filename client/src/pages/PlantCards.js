@@ -16,7 +16,7 @@ function PlantCards() {
   useEffect(() => {
     getUser();
     getPlants();
-    
+    authenticate();
   }, [state]);
 
   function getUser() {
@@ -26,6 +26,11 @@ function PlantCards() {
     })
   }
 
+  function authenticate() {
+    if (!state.isLoggin) {
+      window.location.pathname = '/'
+    }
+  }
 
   function getPlants() {
     currentUser.plants.map(plant => (
