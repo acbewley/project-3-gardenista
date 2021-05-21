@@ -8,7 +8,16 @@ const userSchema = new Schema({
     unique: true,
   },
   password: { type: String, require: true },
-  plants: [{ type: Schema.Types.ObjectId, ref: "Plants" }],
+  plants: [
+    {
+      name: { type: String, required: true },
+      botanical_name: { type: String, required: true },
+      height: { type: String, required: true },
+      usda_zones: { type: String, required: true },
+      image: { type: String, required: true },
+      description: { type: String, required: true },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
