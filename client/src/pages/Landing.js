@@ -29,8 +29,6 @@ function Landing() {
         e.username === userRef.current.value &&
         e.password === passRef.current.value
     );
-    console.log(isLoggedin);
-    console.log(u)
     handleHomePage(u);
   };
 
@@ -41,7 +39,7 @@ function Landing() {
         userId: e._id,
         username: e.username,
       });
-      history.push("/home");
+      history.push("/cards");
       setError("");
     } else {
       setError("Incorrect Username or Password");
