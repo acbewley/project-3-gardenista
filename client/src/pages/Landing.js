@@ -12,7 +12,7 @@ function Landing() {
   const [isLoggedin, setIsLoggedIn] = useState();
   const [error, setError] = useState("");
 
-  const [_, dispatch] = useUserContext();
+  const [state, dispatch] = useUserContext();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -59,8 +59,8 @@ function Landing() {
     loadUser();
   }, []);
 
-  function loadUser() {
-    API.getUsers()
+  async function loadUser() {
+    await API.getUsers()
       .then((res) => setAllUser(res.data))
       .catch((err) => console.log(err));
   }
