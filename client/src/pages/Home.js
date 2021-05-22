@@ -8,27 +8,27 @@ import { useUserContext } from "../utils/globalState";
 function Home() {
   const [weather, setWeather] = useState([]);
   const [state] = useUserContext();
-  let isLoggin = true
+  let isLoggin = true;
 
   useEffect(() => {
-    localStorage.setItem('isLoggin', true)
-    isLoggin = localStorage.getItem('isLoggin') === 'true';
+    localStorage.setItem("isLoggin", true);
+    isLoggin = localStorage.getItem("isLoggin") === "true";
     authenticate();
     initUser();
     loadWeather();
-  }, [state])
+  }, [state]);
 
   function authenticate() {
     if (isLoggin != true) {
-      window.location.pathname = '/'
+      window.location.pathname = "/";
     }
   }
 
   function initUser() {
-    if (!localStorage.getItem('user')) {
-      localStorage.setItem('user', state.userId);
-    } else if (localStorage.getItem('user') === 'undefined') {
-      localStorage.setItem('user', state.userId);
+    if (!localStorage.getItem("user")) {
+      localStorage.setItem("user", state.userId);
+    } else if (localStorage.getItem("user") === "undefined") {
+      localStorage.setItem("user", state.userId);
     }
   }
 
@@ -41,26 +41,26 @@ function Home() {
       });
     });
   }
-  console.log(state)
+  console.log(state);
   return (
     <Container>
-      <Row>
-        <Col size="md-4">
+      <div className="row mb-5">
+        <div className="col-sm-12 col-md-12 col-lg-4 ">
           <p style={{ textAlign: "center", marginTop: "50px" }}>
             Welcome, {state.username}!
           </p>
           <NeedWater>
             <div style={{ textAlign: "center" }}>(insert cards here)</div>
           </NeedWater>
-        </Col>
-        <Col size="md-8">
+        </div>
+        <div className="col-sm-12 col-md-12 col-lg-8">
           <Row>
             <WeatherDiv>
               <WeatherCard data={weather} />
             </WeatherDiv>
           </Row>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 }
