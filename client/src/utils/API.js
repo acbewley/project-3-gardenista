@@ -38,4 +38,10 @@ export default {
   createUser: function (newUser) {
     return axios.post("/api/user/", newUser);
   },
+  login: function (user) {
+    return axios.post("/api/user/login", user);
+  },
+  auth: function () {
+    return axios.get("/api/user/auth");
+  },
 };
