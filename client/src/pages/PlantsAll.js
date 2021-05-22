@@ -14,9 +14,9 @@ function PlantsAll() {
     }, [state]);
 
     function authenticate() {
-        if (!state.isLoggin) {
-            window.location.pathname = '/'
-        }
+        // if (!isLoggin) {
+        //     window.location.pathname = '/'
+        // }
     }
 
     function loadPlant() {

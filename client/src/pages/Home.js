@@ -8,15 +8,28 @@ import { useUserContext } from "../utils/globalState";
 function Home() {
   const [weather, setWeather] = useState([]);
   const [state] = useUserContext();
+  let isLoggin = true
+  // let user = []
 
   useEffect(() => {
-    authenticate()
-    loadWeather()
+    localStorage.setItem('isLoggin', true)
+    isLoggin = localStorage.getItem('isLoggin') === 'true';
+    authenticate();
+    initUser();
+    loadWeather();
   }, [state])
 
   function authenticate() {
-    if (!state.isLoggin) {
+    if (isLoggin != true) {
       window.location.pathname = '/'
+    }
+  }
+
+  function initUser() {
+    if (!localStorage.getItem('user')) {
+      localStorage.setItem('user', state.userId);
+    } else if (localStorage.getItem('user') === 'undefined') {
+      localStorage.setItem('user', state.userId);
     }
   }
 

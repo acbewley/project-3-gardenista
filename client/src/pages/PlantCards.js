@@ -7,16 +7,15 @@ import SaveList from "../components/SaveList";
 import { useUserContext } from "../utils/globalState";
 
 function PlantCards() {
-  const [state, dispatch] = useUserContext();
-
+  const [state, dispatch] = useUserContext()
   const [savedPlants, setSavedPlants] = useState([]);
-
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState([]);
+  let isLoggin = localStorage.getItem('isLoggin') === 'true'
 
   useEffect(() => {
+    authenticate();
     getUser();
     // getPlants();
-    authenticate();
   }, [state]);
 
   function getUser() {
@@ -27,8 +26,8 @@ function PlantCards() {
   }
 
   function authenticate() {
-    if (!state.isLoggin) {
-      window.location.pathname = "/";
+    if (!isLoggin) {
+      window.location.pathname = '/'
     }
   }
 

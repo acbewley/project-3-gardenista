@@ -6,13 +6,14 @@ import Button from "react-bootstrap/Button";
 
 function Journal() {
   const [state] = useUserContext();
+  let isLoggin = localStorage.getItem('isLoggin') === 'true'
 
   useEffect(() => {
     authenticate();
   }, [state])
 
   function authenticate() {
-    if (!state.isLoggin) {
+    if (!isLoggin) {
       window.location.pathname = '/'
     }
   }
