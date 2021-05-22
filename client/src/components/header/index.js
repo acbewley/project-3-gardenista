@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useUserContext } from "../../utils/globalState";
 import img from "../../images/gardenista-3.png";
-import { useHistory } from "react-router-dom";
 
 const Header = () => {
   let isLoggin = localStorage.getItem("isLoggin") === "true";
-  const history = useHistory();
 
   function logOut() {
     localStorage.setItem("isLoggin", false);
@@ -15,14 +13,7 @@ const Header = () => {
 
   useEffect(() => {
     isLoggin = localStorage.getItem("isLoggin") === "true";
-    toHome();
   });
-
-  function toHome() {
-    if (isLoggin) {
-      history.push("/home");
-    }
-  }
 
   function authenticate() {
     console.log("woah");
