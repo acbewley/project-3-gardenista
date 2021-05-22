@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Journal from "./pages/Journal";
 import PlantCards from "./pages/PlantCards";
-import PlantsAll from "./pages/PlantsAll"
+import PlantsAll from "./pages/PlantsAll";
 import { UserProvider } from "./utils/globalState";
 
 function App() {
