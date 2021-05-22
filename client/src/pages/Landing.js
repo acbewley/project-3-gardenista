@@ -14,6 +14,8 @@ function Landing() {
 
   const [state, dispatch] = useUserContext();
 
+  let checkLogin = localStorage.getItem("isLoggin") === "true";
+
   const handleLogin = (e) => {
     e.preventDefault();
     setIsLoggedIn(
@@ -64,6 +66,9 @@ function Landing() {
 
   useEffect(() => {
     loadUser();
+    if (checkLogin) {
+      history.push("/home");
+    }
   }, []);
 
   return (
