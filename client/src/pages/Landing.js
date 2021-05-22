@@ -39,7 +39,7 @@ function Landing() {
         userId: e._id,
         username: e.username,
       });
-      history.push("/cards");
+      history.push("/home");
       setError("");
     } else {
       setError("Incorrect Username or Password");
@@ -48,20 +48,23 @@ function Landing() {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log("Singup");
-    console.log("User: " + userRef.current.value);
-    console.log("Pass: " + passRef.current.value);
+    const newUser = {
+      username: userRef.current.value,
+      password: passRef.current.value,
+      plants: [],
+    };
+    API.createUser(newUser).catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   async function loadUser() {
     await API.getUsers()
       .then((res) => setAllUser(res.data))
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return (
     <div className="container mt-5 mb-5">
