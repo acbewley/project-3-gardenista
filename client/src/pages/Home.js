@@ -9,7 +9,6 @@ function Home() {
   const [weather, setWeather] = useState([]);
   const [state] = useUserContext();
   let isLoggin = true
-  // let user = []
 
   useEffect(() => {
     localStorage.setItem('isLoggin', true)

@@ -10,7 +10,9 @@ function PlantCards() {
   const [state, dispatch] = useUserContext()
   const [savedPlants, setSavedPlants] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
-  let isLoggin = localStorage.getItem('isLoggin') === 'true'
+  const isLoggin = localStorage.getItem('isLoggin') === 'true';
+  const user = localStorage.getItem('user')
+
 
   useEffect(() => {
     authenticate();
@@ -19,7 +21,7 @@ function PlantCards() {
   }, [state]);
 
   function getUser() {
-    API.getUser(state.userId).then((res) => {
+    API.getUser(user).then((res) => {
       setCurrentUser(res.data);
       setSavedPlants(res.data.plants);
     });
