@@ -7,6 +7,7 @@ const Header = () => {
 
   function logOut() {
     localStorage.setItem('isLoggin', false);
+    localStorage.setItem('user', undefined)
     window.location.pathname = '/'
   }
 
