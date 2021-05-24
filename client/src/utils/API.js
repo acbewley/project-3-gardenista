@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/plants", plantData);
   },
 
-  updateUserPlant: function(id, data) {
+  updateUserPlant: function (id, data) {
     return axios.put("/api/user/" + id, data);
   },
 
@@ -43,5 +43,8 @@ export default {
   },
   auth: function () {
     return axios.get("/api/user/auth");
+  },
+  logout: function () {
+    return axios.post("/api/user/logout");
   },
 };

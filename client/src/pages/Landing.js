@@ -8,13 +8,10 @@ function Landing() {
   const history = useHistory();
   const userRef = useRef();
   const passRef = useRef();
-  const [allUser, setAllUser] = useState([]);
-  const [isLoggedin, setIsLoggedIn] = useState();
+
   const [error, setError] = useState("");
 
   const [state, dispatch] = useUserContext();
-
-  let checkLogin = localStorage.getItem("isLoggin") === "true";
 
   const handleLogin = (e) => {
     e.preventDefault();
