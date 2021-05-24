@@ -1,22 +1,39 @@
 import React, { useEffect } from "react";
 import { useUserContext } from "../../utils/globalState";
 import img from "../../images/gardenista-3.png";
+import API from "../../utils/API";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
-  let isLoggin = localStorage.getItem("isLoggin") === "true";
+  let isLoggin = true;
+  const history = useHistory();
 
   function logOut() {
-    localStorage.setItem("isLoggin", false);
-    localStorage.setItem("user", undefined);
-    window.location.pathname = "/";
+    API.logout()
+      .then((response) => {
+        isLoggin = response.data.logged_in;
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   }
 
   useEffect(() => {
-    isLoggin = localStorage.getItem("isLoggin") === "true";
-  });
+    checkLogin();
+  }, []);
+
+  function checkLogin() {
+    API.auth()
+      .then((response) => {
+        return response.data.logged_in;
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
 
   function authenticate() {
-    console.log("woah");
     if (isLoggin) {
       return (
         <nav
