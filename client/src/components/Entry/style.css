@@ -28,11 +28,11 @@ h2 {
   }
 
 .col-md-3 {
-    height: calc(80vh - 70px);
-    border-bottom: none;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    background-color: #fc3;
+    /* height: calc(80vh - 70px); */
+    /* border-bottom: none; */
+    /* border-bottom-right-radius: 0; */
+    /* border-bottom-left-radius: 0; */
+    /* background-color: #fc3; */
 }
 
 
