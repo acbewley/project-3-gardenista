@@ -19,7 +19,7 @@ function Home() {
   }, [state]);
 
   function authenticate() {
-    if (isLoggin != true) {
+    if (isLoggin !== true) {
       window.location.pathname = "/";
     }
   }
