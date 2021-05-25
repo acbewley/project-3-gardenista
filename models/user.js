@@ -19,6 +19,12 @@ const userSchema = new Schema({
       next_water: { type: Date }
     },
   ],
+  journal: [
+    {
+      title: { type: String, required: true  },
+      text: { type: String, required: true }
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);

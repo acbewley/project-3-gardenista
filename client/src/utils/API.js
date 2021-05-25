@@ -47,7 +47,7 @@ export default {
   },
   deleteNote: function (id) {
     return axios.delete("/api/notes/" + id)
-  }
+  },
   login: function (user) {
     return axios.post("/api/user/login", user);
   },

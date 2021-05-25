@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "../Grid";
-import API from "../../utils/API"
 
 function EntryList(props) {
-    // const notes = props.notes.map((note) => {
-    //     return (
-    //         <li>{note}</li>
-    //     )
-    // });
+
+    console.log("Props", props)
+
     return (
 
         <Col size="md-3">
