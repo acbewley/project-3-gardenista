@@ -1,58 +1,122 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "../components/Grid";
 import Entry from "../components/Entry";
-import { useUserContext } from "../utils/globalState";
-import Button from "react-bootstrap/Button";
+// import { useUserContext } from "../utils/globalState";
+import "../components/Entry/style.css";
+import EntryList from "../components/EntryList";
 
-function Journal() {
-  const [state] = useUserContext();
+// const NEWPOST = -1
 
-  useEffect(() => {
-    authenticate();
-  }, [state])
+export default class Journal extends React.Component {
 
-  function authenticate() {
-    if (!state.isLoggin) {
-      window.location.pathname = '/'
+    // constructor(props) {
+    //     super(props)
+
+    //     this.onChangePostText = this.onChangePostText.bind(this);
+    //     this.onSavePost = this.onSavePost.bind(this);
+    //     this.onStartPostEdit = this.onStartPostEdit.bind(this);
+    //     this.onCancelEdit = this.onCancelEdit.bind(this);
+    //     this.onDeletePost = this.onDeletePost.bind(this);
+    // }
+
+    // state = {
+    //     posts: [],
+    //     inputText: '',
+    //     editPostIx: NEWPOST,
+    // }
+
+    // componentWillMount() {
+    //     if (localStorage.posts != undefined) {
+    //         this.setState({ posts: JSON.parse(localStorage.posts) });
+    //     }
+    // }
+
+    // onChangePostText(e) {
+    //     this.setState({ inputText: e.target.value })
+    // }
+
+    // onSavePost() {
+    //     // Either save a new post
+    //     if (this.state.editPostIx === NEWPOST) {
+    //         const newPost = {
+    //             text: this.state.inputText,
+    //             date: new Date().toLocaleString(),
+    //         };
+    //         this.state.posts = this.state.posts.concat(newPost);
+    //     } else {
+    //         // or edit an existing one
+    //         this.state.posts[this.state.editPostIx].text = this.state.inputText;
+    //     }
+
+    //     this.setState({
+    //         posts: this.state.posts,
+    //         inputText: '',
+    //         editPostIx: NEWPOST,
+    //     });
+
+    //     this.persistPosts();
+    // }
+
+    // onStartPostEdit(editPostIx) {
+    //     this.setState({
+    //         editPostIx,
+    //         inputText: this.state.posts[editPostIx].text,
+    //     });
+    // }
+
+    // onCancelEdit() {
+    //     this.setState({ editPostIx: NEWPOST, inputText: '' });
+    // }
+
+    // onDeletePost(editPostIx) {
+    //     this.state.posts.splice(editPostIx, 1);
+    //     this.setState({
+    //         posts: this.state.posts,
+    //         editPostIx: NEWPOST,
+    //         inputText: '',
+    //     });
+
+    //     this.persistPosts();
+    // }
+
+    // persistPosts() {
+    //     localStorage.posts = JSON.stringify(this.state.posts);
+    // }
+
+    //   const [state] = useUserContext();
+
+    //   useEffect(() => {
+    //     authenticate();
+    //   }, [state])
+
+    //   function authenticate() {
+    //     if (!state.isLoggin) {
+    //       window.location.pathname = '/'
+    //     }
+    //   }
+    render() {
+
+        return (
+            <Container>
+                <Row>
+                    <EntryList
+                        // onStartPostEdit={this.onStartPostEdit}
+                        // onDeletePost={this.onDeletePost}
+                        // posts={this.state.posts}
+                    />
+                    <Col size="md-9">
+                        <Entry
+                            // onSavePost={this.onSavePost}
+                            // onChangePostText={this.onChangePostText}
+                            // onCancelEdit={this.onCancelEdit}
+                            // inputText={this.state.inputText}
+                            // editing={this.state.editPostIx !== NEWPOST}
+                        />
+                    </Col>
+                </Row>
+            </Container>
+        )
     }
-  }
-  
-  return (
-    <div>
-      <Container>
-        <Row>
-          <Col size="md-3">
-            <h3>Journal Entries</h3>
-            <div>
-              <ul className="list-group"></ul>
-            </div>
-            <div className="text-right mt-3 mb-5">
-              <Button
-                style={{
-                  backgroundColor: "#5B7444",
-                  border: "none",
-                  marginRight: "5px",
-                }}
-              >
-                <i className="fas fa-plus text-light new-note mt-auto"></i>Add
-              </Button>
-              <Button
-                style={{
-                  backgroundColor: "#5B7444",
-                  border: "none",
-                }}
-              >
-                <i className="fas fa-save text-light save-note"></i>Save
-              </Button>
-            </div>
-          </Col>
-          <Col size="md-9">
-            <Entry></Entry>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
 }
 
-export default Journal;
+// export default Journal;

@@ -34,4 +34,14 @@ export default {
   createUser: function (newUser) {
     return axios.post("/api/user/", newUser);
   },
+
+  getNotes: function () {
+    return axios.get("/api/notes")
+  },
+  saveNote: function (note) {
+    return axios.post("/api/notes", note)
+  },
+  deleteNote: function (id) {
+    return axios.delete("/api/notes/" + id)
+  }
 };
