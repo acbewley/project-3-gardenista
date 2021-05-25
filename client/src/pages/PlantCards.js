@@ -7,28 +7,29 @@ import SaveList from "../components/SaveList";
 import { useUserContext } from "../utils/globalState";
 
 function PlantCards() {
-  const [state, dispatch] = useUserContext();
-
+  const [state, dispatch] = useUserContext()
   const [savedPlants, setSavedPlants] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
+  const isLoggin = localStorage.getItem('isLoggin') === 'true';
+  const user = localStorage.getItem('user')
 
-  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
+    authenticate();
     getUser();
     // getPlants();
-    authenticate();
   }, [state]);
 
   function getUser() {
-    API.getUser(state.userId).then((res) => {
+    API.getUser(user).then((res) => {
       setCurrentUser(res.data);
       setSavedPlants(res.data.plants);
     });
   }
 
   function authenticate() {
-    if (!state.isLoggin) {
-      window.location.pathname = "/";
+    if (!isLoggin) {
+      window.location.pathname = '/'
     }
   }
 

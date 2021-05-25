@@ -5,7 +5,8 @@ import Entry from "../components/Entry";
 import "../components/Entry/style.css";
 import EntryList from "../components/EntryList";
 
-// const NEWPOST = -1
+  const [state] = useUserContext();
+  let isLoggin = localStorage.getItem('isLoggin') === 'true'
 
 export default class Journal extends React.Component {
 
@@ -83,17 +84,18 @@ export default class Journal extends React.Component {
     //     localStorage.posts = JSON.stringify(this.state.posts);
     // }
 
-    //   const [state] = useUserContext();
+       const [state] = useUserContext();
+      let isLoggin = localStorage.getItem('isLoggin') === 'true'
+  
+      useEffect(() => {
+        authenticate();
+      }, [state])
 
-    //   useEffect(() => {
-    //     authenticate();
-    //   }, [state])
-
-    //   function authenticate() {
-    //     if (!state.isLoggin) {
-    //       window.location.pathname = '/'
-    //     }
-    //   }
+      function authenticate() {
+        if (!state.isLoggin) {
+          window.location.pathname = '/'
+        }
+      }
     render() {
 
         return (

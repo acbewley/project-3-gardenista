@@ -8,59 +8,63 @@ function Landing() {
   const history = useHistory();
   const userRef = useRef();
   const passRef = useRef();
-  const [allUser, setAllUser] = useState([]);
-  const [isLoggedin, setIsLoggedIn] = useState();
+
   const [error, setError] = useState("");
 
-  const [_, dispatch] = useUserContext();
+  const [state, dispatch] = useUserContext();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setIsLoggedIn(
-      allUser.some(
-        (e) =>
-          e.username === userRef.current.value &&
-          e.password === passRef.current.value
-      )
-    );
-
-    const u = allUser.find(
-      (e) =>
-        e.username === userRef.current.value &&
-        e.password === passRef.current.value
-    );
-    handleHomePage(u);
+    API.login({
+      username: userRef.current.value,
+      password: passRef.current.value,
+    })
+      .then((response) => {
+        console.log(response);
+        setError("");
+        const user = {
+          userId: response.data.user._id,
+          username: response.data.user.username,
+        };
+        handleHomePage(user);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        if (err.response.status === 401) {
+          setError(err.response.data.message);
+        }
+      });
   };
 
   function handleHomePage(e) {
-    if (isLoggedin) {
-      dispatch({
-        type: "loggin",
-        userId: e._id,
-        username: e.username,
-      });
-      history.push("/cards");
-      setError("");
-    } else {
-      setError("Incorrect Username or Password");
-    }
+    dispatch({
+      type: "loggin",
+      userId: e.userId,
+      username: e.username,
+    });
+    history.push("/home");
   }
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log("Singup");
-    console.log("User: " + userRef.current.value);
-    console.log("Pass: " + passRef.current.value);
+    const newUser = {
+      username: userRef.current.value,
+      password: passRef.current.value,
+      plants: [],
+    };
+    API.createUser(newUser).catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    loadUser();
+    checkUserLogin();
   }, []);
 
-  function loadUser() {
-    API.getUsers()
-      .then((res) => setAllUser(res.data))
-      .catch((err) => console.log(err));
+  function checkUserLogin() {
+    API.auth()
+      .then((response) => {
+        if (response.data && response.data.logged_in) history.push("/home");
+      })
+      .catch((err) => console.log(err.response));
   }
 
   return (

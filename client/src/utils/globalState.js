@@ -1,7 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
 
 const UserContext = createContext({
-  isLoggin: false,
   userId: "",
   username: "",
 });
@@ -11,7 +10,6 @@ function reducer(state, action) {
   switch (action.type) {
     case "loggin":
       return {
-        isLoggin: true,
         userId: action.userId,
         username: action.username,
       };
