@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "../components/Grid/index";
 import API from "../utils/API";
 import SaveList from "../components/SaveList";
+import Sidebar from "../components/PlantSide"
 import { useUserContext } from "../utils/globalState";
 
 function PlantCards() {
@@ -54,12 +55,22 @@ function PlantCards() {
 
   return (
     <div>
-      <Container fluid>
-        {savedPlants.length ? (
-          <SaveList plantState={savedPlants}></SaveList>
-        ) : (
-          <h5>No results to display</h5>
-        )}
+      <Container>
+        <Row>
+          <Col size="md-3">
+            <div className = "side-style">
+            <Sidebar />
+            </div>
+            
+          </Col>
+          <Col size="md-9">
+            {savedPlants.length ? (
+              <SaveList plantState={savedPlants}></SaveList>
+            ) : (
+              <h5>No results to display</h5>
+            )}
+          </Col>
+        </Row>
       </Container>
     </div>
   );

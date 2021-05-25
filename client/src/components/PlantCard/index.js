@@ -21,8 +21,7 @@ export function PlantCard(props) {
     
     return (
         <div>
-            <div className="card">
-                <div className="card-header"></div>
+            <div className="card border-warning">
                 <div className="card-body plant-card">
                     <img src={image} style={{ maxWidth: "100px" }} />
                     <h5 className="card-title">{name}</h5>
