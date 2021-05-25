@@ -9,6 +9,8 @@ const Header = () => {
   const history = useHistory();
 
   function logOut() {
+    localStorage.setItem("isLoggin", false);
+    localStorage.setItem("user", "");
     API.logout()
       .then((response) => {
         isLoggin = response.data.logged_in;

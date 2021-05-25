@@ -56,6 +56,8 @@ function Landing() {
   };
 
   useEffect(() => {
+    localStorage.setItem("isLoggin", false);
+    localStorage.setItem("user", "");
     checkUserLogin();
   }, []);
 
