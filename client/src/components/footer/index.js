@@ -1,18 +1,11 @@
 import React from 'react';
-
-const style = {
-  backgroundColor: '#5b7444',
-  position: 'fixed',
-  left: 0,
-  bottom: 0,
-  width: '100%'
-}
+import "../Footer/style.css"
 
 const Footer = () => {
   return (
-    <footer className="footer mt-auto py-3" style={style}>
+    <footer className="footer mt-auto py-3">
       <div className="container">
-        <span className="text-muted">Copyrite Us 2021</span>
+        <span>Proudly Made with React | 2021</span>
       </div>
     </footer>
   )
