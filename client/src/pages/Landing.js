@@ -115,7 +115,7 @@ function Landing() {
           </div>
           <div class="input-group input-group-sm">
             <input
-              type="text"
+              type="password"
               className="form-control mt-3 "
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
