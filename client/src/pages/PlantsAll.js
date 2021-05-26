@@ -18,7 +18,7 @@ function PlantsAll() {
     //     window.location.pathname = '/'
     // }
   }
-  const userId = localStorage.getItem("user");
+  const user = localStorage.getItem("user");
 
   function loadPlant() {
     API.getPlants()
@@ -41,7 +41,7 @@ function PlantsAll() {
     //     .then(res => console.log("Successful POST to DB!", res))
     //     .catch(err => console.log("this is the error", err));
 
-    API.updateUserPlant(userId, {
+    API.updateUserPlant(user, {
       id: currentPlant.id,
       name: currentPlant.name,
       botanical_name: currentPlant.botanical_name,
