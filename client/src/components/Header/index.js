@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useUserContext } from "../../utils/globalState";
 import img from "../../images/gardenista-3.png";
 import API from "../../utils/API";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Header = () => {
   let isLoggin = true;
   const history = useHistory();
+  const location = useLocation();
 
   function logOut() {
     localStorage.setItem("isLoggin", false);
@@ -14,9 +15,9 @@ const Header = () => {
     API.logout()
       .then((response) => {
         isLoggin = response.data.logged_in;
-        localStorage.setItem('isLoggin', false)
-        localStorage.setItem('user', null)
-        window.location.pathname = '/';
+        localStorage.setItem("isLoggin", false);
+        localStorage.setItem("user", null);
+        window.location.pathname = "/";
       })
       .catch((err) => {
         console.log(err.response);
@@ -30,7 +31,7 @@ const Header = () => {
   function checkLogin() {
     API.auth()
       .then((response) => {
-        console.log(response)
+        console.log(response);
         return response.data.logged_in;
       })
       .catch((err) => {
@@ -39,7 +40,21 @@ const Header = () => {
   }
 
   function authenticate() {
-    if (isLoggin) {
+    console.log(location.pathname);
+    if (location.pathname === "/") {
+      return (
+        <nav
+          className="navbar navbar-expand-lg navbar-light"
+          style={{ backgroundColor: "#5b7444" }}
+        >
+          <div className="container-fluid">
+            <a className="navbar-brand">
+              <img src={img} alt="" width="75" height="93.75" />
+            </a>
+          </div>
+        </nav>
+      );
+    } else {
       return (
         <nav
           className="navbar navbar-expand-lg navbar-light"
@@ -89,19 +104,6 @@ const Header = () => {
                 </a>
               </span>
             </div>
-          </div>
-        </nav>
-      );
-    } else {
-      return (
-        <nav
-          className="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "#5b7444" }}
-        >
-          <div className="container-fluid">
-            <a className="navbar-brand">
-              <img src={img} alt="" width="75" height="93.75" />
-            </a>
           </div>
         </nav>
       );

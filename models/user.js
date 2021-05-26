@@ -16,7 +16,13 @@ const userSchema = new Schema({
       usda_zones: { type: String, required: true },
       image: { type: String, required: true },
       description: { type: String, required: true },
-      next_water: { type: Date }
+      next_water: { type: Date },
+    },
+  ],
+  journals: [
+    {
+      title: { type: String, require: true },
+      note: { type: String, require: true },
     },
   ],
 });
