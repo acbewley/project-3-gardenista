@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Row, Col } from "../components/Grid/index";
+import { Container } from "../components/Grid/index";
 import AllCards from "../components/AllCards";
 import { useUserContext } from "../utils/globalState";
 
 function PlantsAll() {
   const [allPlants, setAllPlants] = useState([]);
-  const [state, dispatch] = useUserContext();
+  const [state] = useUserContext();
 
   useEffect(() => {
     loadPlant();
@@ -29,17 +29,6 @@ function PlantsAll() {
 
   function savePlant(currentPlant) {
     console.log("This is the current plant", currentPlant);
-    // API.savePlant({
-    //     id: currentPlant.id,
-    //     name: currentPlant.name,
-    //     botanical_name: currentPlant.botanical_name,
-    //     height: currentPlant.height,
-    //     usda_zones: currentPlant.usda_zones,
-    //     image: currentPlant.image,
-    //     description: currentPlant.description
-    // })
-    //     .then(res => console.log("Successful POST to DB!", res))
-    //     .catch(err => console.log("this is the error", err));
 
     API.updateUserPlant(user, {
       id: currentPlant.id,
