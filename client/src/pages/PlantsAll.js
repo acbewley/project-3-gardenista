@@ -6,6 +6,7 @@ import { useUserContext } from "../utils/globalState";
 
 function PlantsAll() {
   const [allPlants, setAllPlants] = useState([]);
+  const [userPlants, setUserPlants] = useState([]);
   const [state, dispatch] = useUserContext();
 
   useEffect(() => {
@@ -25,23 +26,22 @@ function PlantsAll() {
       .then((res) => setAllPlants(res.data))
 
       .catch((err) => console.log(err));
+    loadUserPlants();
+  }
+
+  function loadUserPlants() {
+    API.getUser(user)
+      .then((res) => {
+        setUserPlants(res.data.plants);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   }
 
   function savePlant(currentPlant) {
-    console.log("This is the current plant", currentPlant);
-    // API.savePlant({
-    //     id: currentPlant.id,
-    //     name: currentPlant.name,
-    //     botanical_name: currentPlant.botanical_name,
-    //     height: currentPlant.height,
-    //     usda_zones: currentPlant.usda_zones,
-    //     image: currentPlant.image,
-    //     description: currentPlant.description
-    // })
-    //     .then(res => console.log("Successful POST to DB!", res))
-    //     .catch(err => console.log("this is the error", err));
-
-    API.updateUserPlant(user, {
+    let array = userPlants;
+    array.push({
       id: currentPlant.id,
       name: currentPlant.name,
       botanical_name: currentPlant.botanical_name,
@@ -51,8 +51,9 @@ function PlantsAll() {
       description: currentPlant.description,
       next_water: ''
     })
+    API.updateUserPlant(user, { plants: array })
       .then((res) => console.log("Successful POST to DB!", res))
-      .catch((err) => console.log("this is the error", err));
+      .catch((err) => console.log("this is the error", err.response));
   }
 
   return (
@@ -61,11 +62,11 @@ function PlantsAll() {
         {allPlants.length ? (
           <AllCards plantState={allPlants} savePlant={savePlant}></AllCards>
         ) : (
-          <div>
-            <hr />
-            <p style={{ fontStyle: "italic" }}>No results to display</p>
-          </div>
-        )}
+            <div>
+              <hr />
+              <p style={{ fontStyle: "italic" }}>No results to display</p>
+            </div>
+          )}
       </Container>
     </div>
   );
