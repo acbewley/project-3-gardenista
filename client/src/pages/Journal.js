@@ -45,7 +45,7 @@ function Journal() {
     setJournalSelect(JournalSet.find((element) => element.title === value));
   };
 
-  async function saveJournal() {
+  function saveJournal() {
     let array = JournalSet;
     array.push({
       title: updateTitleRef.current.value,
@@ -57,40 +57,61 @@ function Journal() {
     window.location.reload();
   }
 
+  const removeJournal = (e) => {
+    let array = JournalSet;
+    const i = array.findIndex((t) => t.title === e.target.value);
+    array.splice(i, 1);
+    API.updateUserJournal(userId, { journals: array })
+      .then((res) => console.log("Successful POST to DB!", res))
+      .catch((err) => console.log("this is the error", err.response));
+    window.location.reload();
+  };
+
   return (
     <Container>
+      <h3 className="justify-content-center d-flex mt-5">Journal Entries</h3>
       <div className="row mt-5">
         <div className="col-lg-4" style={{ backgroundColor: "orange" }}>
           {JournalSet.map((e) => {
             return (
-              <Button
-                className="mt-3 mb-3 d-flex"
-                style={{ width: "100%" }}
-                value={e.title}
-                onClick={selectJournal}
-              >
-                {e.title}
-              </Button>
+              <div className="row mt-3 mb-3">
+                <div className="col-lg-8 col-sm-10">
+                  <Button
+                    className="d-flex"
+                    style={{ width: "100%" }}
+                    value={e.title}
+                    onClick={selectJournal}
+                  >
+                    {e.title}
+                  </Button>
+                </div>
+                <div className="col-4 col-sm-2">
+                  <Button
+                    className="btn btn-danger"
+                    onClick={removeJournal}
+                    value={e.title}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
             );
           })}
         </div>
         <div className="col-lg-8">
-          <h3 className="justify-content-center d-flex">Journal Entries</h3>
           <div className="list-container">
-            <div>
-              <input
-                className="note-title"
-                placeholder={JournalSelect.title}
-                maxLength="28"
-                type="text"
-                ref={updateTitleRef}
-              />
-              <textarea
-                className="note-textarea"
-                placeholder={JournalSelect.note}
-                ref={updateNoteRef}
-              ></textarea>
-            </div>
+            <input
+              className="note-title"
+              placeholder={JournalSelect.title}
+              maxLength="28"
+              type="text"
+              ref={updateTitleRef}
+            />
+            <textarea
+              className="note-textarea"
+              placeholder={JournalSelect.note}
+              ref={updateNoteRef}
+            ></textarea>
           </div>
 
           <Button className="mr-4" onClick={saveJournal}>
