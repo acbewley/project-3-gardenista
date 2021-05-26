@@ -8,7 +8,7 @@ function PlantsAll() {
   const [allPlants, setAllPlants] = useState([]);
   const [userPlants, setUserPlants] = useState([]);
   const [state, dispatch] = useUserContext();
-
+  const user = localStorage.getItem("user");
 
   useEffect(() => {
     loadPlant();
@@ -20,7 +20,6 @@ function PlantsAll() {
     //     window.location.pathname = '/'
     // }
   }
-  const user = localStorage.getItem("user");
 
   function loadPlant() {
     API.getPlants()
@@ -43,15 +42,15 @@ function PlantsAll() {
   function savePlant(currentPlant) {
     let array = userPlants;
     array.push({
-      id: currentPlant.id,
       name: currentPlant.name,
       botanical_name: currentPlant.botanical_name,
       height: currentPlant.height,
       usda_zones: currentPlant.usda_zones,
       image: currentPlant.image,
       description: currentPlant.description,
-      next_water: ''
-    })
+      next_water: "",
+    });
+    console.log(array);
     API.updateUserPlant(user, { plants: array })
       .then((res) => console.log("Successful POST to DB!", res))
       .catch((err) => console.log("this is the error", err.response));
@@ -63,11 +62,11 @@ function PlantsAll() {
         {allPlants.length ? (
           <AllCards plantState={allPlants} savePlant={savePlant}></AllCards>
         ) : (
-            <div>
-              <hr />
-              <p style={{ fontStyle: "italic" }}>No results to display</p>
-            </div>
-          )}
+          <div>
+            <hr />
+            <p style={{ fontStyle: "italic" }}>No results to display</p>
+          </div>
+        )}
       </Container>
     </div>
   );
