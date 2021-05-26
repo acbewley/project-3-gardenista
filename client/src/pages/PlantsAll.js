@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Container, Row, Col } from "../components/Grid/index";
+import { Container } from "../components/Grid/index";
 import AllCards from "../components/AllCards";
 import { useUserContext } from "../utils/globalState";
 
@@ -8,6 +8,7 @@ function PlantsAll() {
   const [allPlants, setAllPlants] = useState([]);
   const [userPlants, setUserPlants] = useState([]);
   const [state, dispatch] = useUserContext();
+
 
   useEffect(() => {
     loadPlant();

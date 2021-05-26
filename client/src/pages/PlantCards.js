@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import PlantHeader from "../components/PlantHeader"
-// import AddButton from "../components/PlantAdd"
-import { Container, Row, Col } from "../components/Grid/index";
+import { Container, Row, Col } from "../components/Grid/";
 import API from "../utils/API";
 import SaveList from "../components/SaveList";
 import Sidebar from "../components/PlantSide"
 import { useUserContext } from "../utils/globalState";
 
 function PlantCards() {
-  const [state, dispatch] = useUserContext()
+  const [state] = useUserContext()
   const [savedPlants, setSavedPlants] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const isLoggin = localStorage.getItem('isLoggin') === 'true';
@@ -33,23 +31,6 @@ function PlantCards() {
       window.location.pathname = '/'
     }
   }
-
-  // function getPlants() {
-  //   currentUser.plants.map(plant => (
-  //     API.getPlant(plant._id)
-  //       .then(res => {
-  //         setSavedPlants([
-  //           ...savedPlants,
-  //           res.data
-  //         ])
-  //         console.log("This is the res from getPlants", res);
-  //       })
-  //       .catch(err => {
-  //         console.log("This is the error", err);
-  //       })
-  //   ))
-
-  // }
 
   console.log(currentUser);
 

@@ -25,10 +25,10 @@ export function PlantCard(props) {
                 <div className="card-body plant-card">
                     <img src={image} style={{ maxWidth: "100px" }} />
                     <h5 className="card-title">{name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{botanical_name}</h6>
-                    <p class="card-text">Height: {height}</p>
-                    <p class="card-text">USDA Zones: {usda_zones}</p>
-                    <p class="card-text">{description}</p>
+                    <h6 className="card-subtitle mb-2 text-muted">{botanical_name}</h6>
+                    <p className="card-text">Height: {height}</p>
+                    <p className="card-text">USDA Zones: {usda_zones}</p>
+                    <p className="card-text">{description}</p>
                     <div className='form-water row g-3'>
                         <input ref={waterRef} type='text' className='col-auto form-control' id='next-water' placeholder='Next Water Date (mm/dd/yyyy)' />
                         <button onClick={onClick} type="submit" class="col-auto btn btn-primary mb-3 float-end">Save</button>
