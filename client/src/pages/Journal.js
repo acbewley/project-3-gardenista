@@ -8,7 +8,7 @@ import API from "../utils/API";
 function Journal() {
   const [state] = useUserContext();
   let isLoggin = localStorage.getItem("isLoggin") === "true";
-  let userId = localStorage.getItem("user");
+  const userId = localStorage.getItem("user");
   const [JournalSet, setJournalSet] = useState([]);
   const [JournalSelect, setJournalSelect] = useState({
     title: "title",
@@ -45,13 +45,16 @@ function Journal() {
     setJournalSelect(JournalSet.find((element) => element.title === value));
   };
 
-  function saveJournal() {
-    API.updateUserJournal(userId, {
+  async function saveJournal() {
+    let array = JournalSet;
+    array.push({
       title: updateTitleRef.current.value,
       note: updateNoteRef.current.value,
-    })
+    });
+    API.updateUserJournal(userId, { journals: array })
       .then((res) => console.log("Successful POST to DB!", res))
       .catch((err) => console.log("this is the error", err.response));
+    window.location.reload();
   }
 
   return (

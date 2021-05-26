@@ -21,6 +21,9 @@ export default {
   updateUserPlant: function (id, data) {
     return axios.put("/api/user/" + id, data);
   },
+  updateUserJournal: function (id, data) {
+    return axios.put("/api/user/journals/" + id, data);
+  },
 
   getWeather: function (lat, long) {
     return axios.get(
