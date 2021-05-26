@@ -14,7 +14,9 @@ const Header = () => {
     API.logout()
       .then((response) => {
         isLoggin = response.data.logged_in;
-        history.push("/");
+        localStorage.setItem('isLoggin', false)
+        localStorage.setItem('user', null)
+        window.location.pathname = '/';
       })
       .catch((err) => {
         console.log(err.response);
@@ -28,6 +30,7 @@ const Header = () => {
   function checkLogin() {
     API.auth()
       .then((response) => {
+        console.log(response)
         return response.data.logged_in;
       })
       .catch((err) => {

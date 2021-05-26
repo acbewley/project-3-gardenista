@@ -22,14 +22,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   updateUserPlants: function (req, res) {
-    db.User.updateOne(
-      {
-        _id: req.params.id,
-      },
-      {
-        $push: { plants: req.body },
-      }
-    )
+    db.User.updateOne(req.params.user, req.body)
       .then((data) => res.json(data))
       .catch((err) => res.status(422).json(err));
   },
