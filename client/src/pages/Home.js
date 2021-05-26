@@ -9,7 +9,6 @@ function Home() {
   const [weather, setWeather] = useState([]);
   const [water, setWater] = useState([]);
   const [state] = useUserContext();
-  // const water = [];
   const id = localStorage.getItem('user');
   let today;
   let user = {}
@@ -36,7 +35,6 @@ function Home() {
       localStorage.setItem("user", state.userId);
     }
     await API.getUser(id).then(res => user = (res.data))
-    console.log(user.plants)
   }
 
   function loadWeather() {
@@ -55,7 +53,7 @@ function Home() {
     user.plants.map((plant) => {
       if (plant.next_water) {
         if (plant.next_water.substr(0, 10) === today) {
-          setWater([...water, plant])
+          setWater(water => [...water, plant])
         }
       }
     })
@@ -73,13 +71,13 @@ function Home() {
 
     today = year + '-' + month  + '-' + day;
   }
-  console.log(water)
+  console.log(user)
   return (
     <Container>
       <div className="row mb-5">
         <div className="col-sm-12 col-md-12 col-lg-4 ">
-          <p style={{ textAlign: "center", marginTop: "50px" }}>
-            Welcome, {user.username}!
+          <p style={{ textAlign: "center", marginTop: "23px" }}>
+            Welcome, back!<br/>The plants that need watering today are:
           </p>
           <NeedWater>
             <WaterCard

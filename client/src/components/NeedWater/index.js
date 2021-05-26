@@ -3,19 +3,18 @@ import './style.css'
 
 export function NeedWater({ children }) {
   return (
-    <div className="needs-water">
+    <div style={{height: '70%'}} className="needs-water">
       {children}
     </div>
   )
 }
 
 export function WaterCard(props) {
-  console.log(props.data)
   return (
     <div>
       {props.data.map((plant) => {
         return (<div>
-          <div className="card">
+          <div style={{width: "90%", margin: '20px'}} key={plant.id} className="card">
             <div className="card-body plant-card">
               <img src={plant.image} style={{ maxWidth: "100px" }} />
               <h5 className="card-title">{plant.name}</h5>
