@@ -61,6 +61,7 @@ function Journal() {
     let array = JournalSet;
     const i = array.findIndex((t) => t.title === e.target.value);
     array.splice(i, 1);
+
     API.updateUserJournal(userId, { journals: array })
       .then((res) => console.log("Successful POST to DB!", res))
       .catch((err) => console.log("this is the error", err.response));
