@@ -11,15 +11,15 @@ function AllCardsItem (props) {
     const getStyle = () => {
         if (state.text === "Save") {
             setState({
-                bgColor: "#00E000",
+                bgColor: "#A3C586",
                 color: "white",
                 text: "Saved"
             })
         }
         else {
             setState({
-                bgColor: "",
-                color: "",
+                bgColor: "#5B7444",
+                color: "white",
                 text: "Save"
             })
         }
@@ -32,8 +32,7 @@ function AllCardsItem (props) {
     
         return (
             <div>
-                <div className="card">
-                    <div className="card-header"></div>
+                <div className="card border-warning">
                     <div className="card-body plant-card">
                         <img src={image} style={{ maxWidth: "100px" }} />
                         <h5 className="card-title">{name}</h5>

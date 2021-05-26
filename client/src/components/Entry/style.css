@@ -27,13 +27,13 @@ h2 {
     color: #757575;
   }
 
-.col-md-3 {
+/* .col-md-3 { */
     /* height: calc(80vh - 70px); */
     /* border-bottom: none; */
     /* border-bottom-right-radius: 0; */
     /* border-bottom-left-radius: 0; */
     /* background-color: #fc3; */
-}
+/* } */
 
 
 .col-md-3 h3 {
