@@ -49,6 +49,7 @@ function PlantsAll() {
       usda_zones: currentPlant.usda_zones,
       image: currentPlant.image,
       description: currentPlant.description,
+      next_water: ''
     })
       .then((res) => console.log("Successful POST to DB!", res))
       .catch((err) => console.log("this is the error", err));
