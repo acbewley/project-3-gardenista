@@ -36,6 +36,7 @@ function Home() {
     } else if (localStorage.getItem("user") === "undefined") {
       localStorage.setItem("user", state.userId);
     }
+    getDay();
     await API.getUser(id)
       .then((res) =>
         res.data.plants.map((plant) => {
@@ -58,17 +59,6 @@ function Home() {
       API.getWeather(lat, long).then((res) => {
         setWeather(res.data.daily);
       });
-    });
-  }
-
-  async function initHome() {
-    getDay();
-    user.plants.map((plant) => {
-      if (plant.next_water) {
-        if (plant.next_water.substr(0, 10) === today) {
-          setWater((water) => [...water, plant]);
-        }
-      }
     });
   }
 
