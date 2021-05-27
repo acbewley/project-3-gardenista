@@ -9,17 +9,19 @@ function Home() {
   const [weather, setWeather] = useState([]);
   const [water, setWater] = useState([]);
   const [state] = useUserContext();
-  const id = localStorage.getItem('user');
+  // const [user, setUser] = useState();
+  const id = localStorage.getItem("user");
   let today;
-  let user = {}
+  let user = {};
   let isLoggin = true;
 
   useEffect(() => {
     localStorage.setItem("isLoggin", true);
     isLoggin = localStorage.getItem("isLoggin") === "true";
     authenticate();
-    initHome();
+
     loadWeather();
+    initUser();
   }, [state]);
 
   function authenticate() {
@@ -34,7 +36,19 @@ function Home() {
     } else if (localStorage.getItem("user") === "undefined") {
       localStorage.setItem("user", state.userId);
     }
-    await API.getUser(id).then(res => user = (res.data))
+    await API.getUser(id)
+      .then((res) =>
+        res.data.plants.map((plant) => {
+          if (plant.next_water) {
+            if (plant.next_water.substr(0, 10) === today) {
+              setWater((water) => [...water, plant]);
+            }
+          }
+        })
+      )
+      .catch((err) => {
+        console.log(err.response);
+      });
   }
 
   function loadWeather() {
@@ -48,41 +62,38 @@ function Home() {
   }
 
   async function initHome() {
-    await initUser();
     getDay();
     user.plants.map((plant) => {
       if (plant.next_water) {
         if (plant.next_water.substr(0, 10) === today) {
-          setWater(water => [...water, plant])
+          setWater((water) => [...water, plant]);
         }
       }
-    })
+    });
   }
 
   function getDay() {
     let d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    today = year + '-' + month  + '-' + day;
+    today = year + "-" + month + "-" + day;
   }
-  console.log(user)
+  console.log(user);
   return (
     <Container>
       <div className="row mb-5">
         <div className="col-sm-12 col-md-12 col-lg-4 ">
           <p style={{ textAlign: "center", marginTop: "23px" }}>
-            Welcome, back!<br/>The plants that need watering today are:
+            Welcome, back!
+            <br />
+            The plants that need watering today are:
           </p>
           <NeedWater>
-            <WaterCard
-              data={water}
-            />
+            <WaterCard data={water} />
           </NeedWater>
         </div>
         <div className="col-sm-12 col-md-12 col-lg-8">
