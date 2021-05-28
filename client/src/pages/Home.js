@@ -78,7 +78,7 @@ function Home() {
       <div className="row mb-5">
         <div className="col-sm-12 col-md-12 col-lg-4 ">
           <p style={{ textAlign: "center", marginTop: "23px" }}>
-            Welcome, back!
+            Welcome back!
             <br />
             The plants that need watering today are:
           </p>
